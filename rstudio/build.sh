@@ -7,6 +7,6 @@ if [[ ! -d ${HOME}/tmp ]]; then
 fi
 export TMPDIR=$HOME/tmp
 
-DOCKERHUB_VERSION=$(cat ./Singularity.def | grep "beyondpie/rstudio | cut -f3 -d':')
+DOCKERHUB_VERSION=$(cat ./Singularity.def | grep "beyondpie/rstudio" | cut -f3 -d':')
 
 singularity build --fakeroot rstudio_server_verse_${DOCKERHUB_VERSION}.sif Singularity.def
