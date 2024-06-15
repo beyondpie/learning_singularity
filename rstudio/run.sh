@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMG=./rstudio_server_verse_4.3.2.sif
+IMG=./rstudio_server_verse_1.7.sif
 
 if [[ ! -e ${IMG} ]]; then
    >&2 echo ${IMG} not found
@@ -21,4 +21,6 @@ else
    fi
 fi
 
-singularity run --bind ${HOME}/rstudio:/home/rstudio ${IMG}
+singularity run --bind ${HOME}/rstudio:/home/rstudio \
+            --bind /projects/ps-renlab2:/home/ps-renlab2 \
+            --bind /projects/ps-renlab:/home/ps-renlab ${IMG}

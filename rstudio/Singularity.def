@@ -52,9 +52,6 @@ From: beyondpie/rstudio:1.7
     # for BPCells
     apt install -y libhdf5-dev
 
-    # Install R packages
-    R -e 'install.packages(c("BiocManager", "remotes"))'
-
     # Set user package directory to /tmp if you want to prevent package collison
     # mkdir -p /home/rstudio_session
     # printf 'R_LIBS_USER="/home/rstudio_session"\n' >> /usr/local/lib/R/etc/Renviron.site
