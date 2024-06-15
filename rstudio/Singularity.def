@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/verse:4.3.2
+From: beyondpie/rstudio:1.7
 
 %runscript
   exec launch_rserver "${@}"
