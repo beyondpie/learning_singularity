@@ -4,16 +4,18 @@ set -euo pipefail
 
 # -d for create a directory and not a file
 # -p interpret TEMPLATE relative to DIR
-RSTUDIO_TEMP=$(mktemp -d -p /tmp)
-trap "{ rm -rf $RSTUDIO_TEMP; }" EXIT
+RSTUDIOTEMP=$(mktemp -d -p /tmp)
+trap "{ rm -rf $RSTUDIOTEMP; }" EXIT
 
-cat <<__DBCONF__ > $RSTUDIO_TEMP/dbconf
+cat <<__DBCONF__ > $RSTUDIOTEMP/dbconf
 provider=sqlite
-directory=$RSTUDIO_TEMP/db.sqlite3
+directory=$RSTUDIOTEMP/db.sqlite3
 __DBCONF__
 
 export RSTUDIO_PASSWORD=password
 export RSTUDIO_PORT=8888
+mkdir -p $HOME/tmp
+export TMPDIR=$HOME/tmp
 
 if [[ $# > 0 ]]; then
    export RSTUDIO_PORT=$1
@@ -28,9 +30,9 @@ printf "RStudio Password:\t$RSTUDIO_PASSWORD\n"
 printf "Port:\t\t\t$RSTUDIO_PORT\n"
 
 /usr/lib/rstudio-server/bin/rserver \
-	--server-working-dir $RSTUDIO_TEMP \
-	--server-data-dir $RSTUDIO_TEMP \
-	--database-config-file $RSTUDIO_TEMP/dbconf \
+	--server-working-dir $RSTUDIOTEMP \
+	--server-data-dir $RSTUDIOTEMP \
+	--database-config-file $RSTUDIOTEMP/dbconf \
 	--server-user=$USER \
 	--www-port=$RSTUDIO_PORT \
 	--auth-none 0 \
