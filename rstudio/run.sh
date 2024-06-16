@@ -21,6 +21,5 @@ else
    fi
 fi
 
-singularity run --bind ${HOME}/rstudio:/home/rstudio \
-            --bind /projects/ps-renlab2:/home/ps-renlab2 \
-            --bind /projects/ps-renlab:/home/ps-renlab ${IMG}
+# singularity run --bind ${HOME}/rstudio:/home/rstudio,/mnt/tscc2/szu:/home/rstudio/ps-renlab2,/mnt/tscc/szu:/home/rstudio/ps-renlab ${IMG}
+singularity run --bind ${HOME}/rstudio:/home/rstudio,/mnt ${IMG}
