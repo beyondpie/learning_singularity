@@ -13,7 +13,7 @@ directory=$RSTUDIOTEMP/db.sqlite3
 __DBCONF__
 
 export RSTUDIO_PASSWORD=password
-export RSTUDIO_PORT=8888
+export RSTUDIO_PORT=8889
 mkdir -p $HOME/tmp
 export TMPDIR=$HOME/tmp
 
